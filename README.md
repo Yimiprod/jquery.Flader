@@ -86,8 +86,8 @@ Options
 > Delay between each auto slidein millisecond
 > Default: 5000
 
-###### onSlide {Function} (params)
+###### onSlide {Function} (items_sliding)
 > callback launch when slide performed, can be used to animate inside the next slide
 
-######## params: items_sliding {Object} \['current': $(elm), 'follow': $(elm)\]
+> items_sliding {Object} \['current': $(elm), 'follow': $(elm)\]
 >     The current slide item and the next item displayed, jquery objects
