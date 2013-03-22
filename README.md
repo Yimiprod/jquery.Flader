@@ -50,40 +50,40 @@ Slide can fade or slide, it can perform auto sliding / fading and have a custom 
 ### Options
 
 ###### btns_classe {String}
-  Custom class for nav buttons
-  Default: ''
+> Custom class for nav buttons
+> Default: ''
 
 ###### wrap_classe {String}
-  Custom class for btn wrap
-  Default: ''
+> Custom class for btn wrap
+> Default: ''
 
 ###### slide_type {String}
-  Slide type of the slider ( 'slider' or 'fade' )
-  Default: 'slide'
+> Slide type of the slider ( 'slider' or 'fade' )
+> Default: 'slide'
 
 ###### speed {Int} ms
-  Animation Speed in millisecond
-  Default: 500
+> Animation Speed in millisecond
+> Default: 500
 
 ###### easing {String}
-  Easing of the animation, can support all the easing supported by Jquery.transit
-  Default: ''
+> Easing of the animation, can support all the easing supported by Jquery.transit
+> Default: ''
 
 ###### mouse_event {String}
-  Mouse event who performe the slide
-  support a custom event 'mousehold' who let the slide continue when mouseclick maintained
-  In mousehold, easing will be 'linear'
-  Default: 'click'
+> Mouse event who performe the slide
+> support a custom event 'mousehold' who let the slide continue when mouseclick maintained
+> In mousehold, easing will be 'linear'
+> Default: 'click'
 
 ###### auto_slide {Boolean}
-  When set at true, the slider will perform an autoslide every each ###### auto_slide_delay
-  Default: false
+> When set at true, the slider will perform an autoslide every each @auto_slide_delay
+> Default: false
 
 ###### auto_slide_delay {Int} ms
-  Delay between each auto slidein millisecond
-  Default: 5000
+> Delay between each auto slidein millisecond
+> Default: 5000
 
 ###### onSlide {Function}
-  callback launch when slide performed, can be used to animate inside the next slide
-  @params: items_sliding {Object} ['current': $(elm), 'follow': $(elm)]
-      The current slide item and the next item displayed, jquery objects
+> callback launch when slide performed, can be used to animate inside the next slide
+> @params: items_sliding {Object} ['current': $(elm), 'follow': $(elm)]
+>     The current slide item and the next item displayed, jquery objects
