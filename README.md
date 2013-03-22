@@ -52,42 +52,42 @@ Usage
 Options
 -------
 
-###### btns_classe {String}
+##### btns_classe {String}
 > Custom class for nav buttons
 > Default: ''
 
-###### wrap_classe {String}
+##### wrap_classe {String}
 > Custom class for btn wrap
 > Default: ''
 
-###### slide_type {String}
+##### slide_type {String}
 > Slide type of the slider ( 'slider' or 'fade' )
 > Default: 'slide'
 
-###### speed {Int} ms
+##### speed {Int} ms
 > Animation Speed in millisecond
 > Default: 500
 
-###### easing {String}
+##### easing {String}
 > Easing of the animation, can support all the easing supported by Jquery.transit
 > Default: ''
 
-###### mouse_event {String}
+##### mouse_event {String}
 > Mouse event who performe the slide
 > support a custom event 'mousehold' who let the slide continue when mouseclick maintained
 > In mousehold, easing will be 'linear'
 > Default: 'click'
 
-###### auto_slide {Boolean}
+##### auto_slide {Boolean}
 > When set at true, the slider will perform an autoslide every each @auto_slide_delay
 > Default: false
 
-###### auto_slide_delay {Int} ms
+##### auto_slide_delay {Int} ms
 > Delay between each auto slidein millisecond
 > Default: 5000
 
-###### onSlide {Function} (items_sliding)
+##### onSlide {Function} (items_sliding)
 > callback launch when slide performed, can be used to animate inside the next slide
 
-> items_sliding {Object} \['current': $(elm), 'follow': $(elm)\]
+###### items_sliding {Object} \['current': $(elm), 'follow': $(elm)\]
 >     The current slide item and the next item displayed, jquery objects
