@@ -85,5 +85,5 @@ Slide can fade or slide, it can perform auto sliding / fading and have a custom 
 
 ###### onSlide {Function}
   callback launch when slide performed, can be used to animate inside the next slide
-  ###### params: items_sliding {Object} ['current': $(elm), 'follow': $(elm)]
+  @params: items_sliding {Object} ['current': $(elm), 'follow': $(elm)]
       The current slide item and the next item displayed, jquery objects
