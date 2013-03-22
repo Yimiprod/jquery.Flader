@@ -1,0 +1,53 @@
+/***********************/
+/* CAROUSEL NAVIGATION */
+/***********************/
+.slider_container {
+    min-height: 399px;
+    position: relative;
+}
+.slider_container.fade .slider_item {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+}
+.slider_container.fade .active {
+    opacity: 1;
+    z-index: 10;
+}
+.slider_container.slide .slider_item {
+    position: absolute;
+}
+.slider_container.slide .list_wrap {
+    position: relative;
+}
+.slider_container.slide .slider_content {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+.nav_wrap {
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+    .nav_wrap .slider_nav {
+        border: none;
+        height: 136px;
+        margin-top: -68px;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        width: 36px;
+        z-index: 20;
+    }
+    .nav_wrap .slider_nav.left {
+        left: -50px;
+    }
+    .nav_wrap .slider_nav.right {
+        right: -50px;
+    }
