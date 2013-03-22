@@ -1,17 +1,18 @@
 jQuery.Flader
 =============
-A smooth slider / fader
------------------------
+### A smooth slider / fader
 
 jQuery Flader is a plugin who can use as dependencies [jQuery Transit](http://ricostacruz.com/jquery.transit) to perform css3 transition.
 Slide can fade or slide, it can perform auto sliding / fading and have a custom mousehold event
 
-### Dependencies
+Dependencies
+------------
 
 [jQuery](http://jquery.com/) (last version as possible)
 [jQuery Transit](http://ricostacruz.com/jquery.transit) (optional but smoother animation!)
 
-### Usage
+Usage
+-----
 
 ``` html
 <!doctype html>
@@ -47,7 +48,8 @@ Slide can fade or slide, it can perform auto sliding / fading and have a custom 
 	</body>
 </html>
 ```
-### Options
+Options
+-------
 
 ###### btns_classe {String}
 > Custom class for nav buttons
@@ -84,6 +86,8 @@ Slide can fade or slide, it can perform auto sliding / fading and have a custom 
 > Default: 5000
 
 ###### onSlide {Function}
+```
 > callback launch when slide performed, can be used to animate inside the next slide
 > @params: items_sliding {Object} ['current': $(elm), 'follow': $(elm)]
 >     The current slide item and the next item displayed, jquery objects
+```
