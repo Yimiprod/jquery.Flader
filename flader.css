@@ -19,6 +19,7 @@
 }
 .slider_container.slide .slider_item {
     position: absolute;
+    width: 100%;
 }
 .slider_container.slide .list_wrap {
     position: relative;

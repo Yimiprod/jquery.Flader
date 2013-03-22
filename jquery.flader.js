@@ -120,8 +120,8 @@
             plugin.settings = $.extend({}, defaults, options);
             if ( ~~!$.inArray( plugin.settings.slide_type, valid_slide_type) ) plugin.settings.slide_type = 'slide';
 
-            container   = $('[data-function="slider_container"]', $element);
-            items       = $('[data-function="slider_item"]', $element);
+            container   = $('[data-function="slider_content"]', $element).addClass('slider_content');
+            items       = $('[data-function="slider_item"]', $element).addClass('slider_item');
             list_wrap   = $('<div/>', { 'class': 'list_wrap' });
             btn_wrap    = $('<div/>', { 'class': 'nav_wrap' }).addClass( plugin.settings.wrap_classe );
             btn_left    = $('<button/>', { 'class': 'slider_nav left' })
@@ -134,7 +134,7 @@
                             .on(plugin.settings.mouse_event, function() {
                                 slide('next');
                             });
-            $element.append( list_wrap.append(container) ).addClass( plugin.settings.slide_type );
+            $element.append( list_wrap.append(container) ).addClass( plugin.settings.slide_type + ' slider_container' );
             if ( items.length > 1 ) $element.append( btn_wrap.append( btn_left, btn_right ) );
 
             current_item = items.filter('.active');
