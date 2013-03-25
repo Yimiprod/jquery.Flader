@@ -118,7 +118,7 @@
         plugin.init = function() {
             if ( !$.support.transition || undefined === $.fn.transition ) $.fn.transition = $.fn.animate;
             plugin.settings = $.extend({}, defaults, options);
-            if ( ~~!$.inArray( plugin.settings.slide_type, valid_slide_type) ) plugin.settings.slide_type = 'slide';
+            if ( !~$.inArray( plugin.settings.slide_type, valid_slide_type) ) plugin.settings.slide_type = 'slide';
 
             container   = $('[data-function="slider_content"]', $element).addClass('slider_content');
             items       = $('[data-function="slider_item"]', $element).addClass('slider_item');
