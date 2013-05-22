@@ -64,7 +64,7 @@ Options
 > Slide type of the slider ( 'slider' or 'fade' )
 > Default: 'slide'
 
-##### speed {Int} ms
+##### speed {Integer} ms
 > Animation Speed in millisecond
 > Default: 500
 
@@ -78,11 +78,17 @@ Options
 > In mousehold, easing will be 'linear'
 > Default: 'click'
 
+##### cycling_slide {Boolean}
+> Define if sliding infinitely
+> Only in slide mod
+> Autoslide disabled when set to false due to the ugly effect if return to first/last slide item.
+> Default: 5000
+
 ##### auto_slide {Boolean}
 > When set at true, the slider will perform an autoslide every each @auto_slide_delay
 > Default: false
 
-##### auto_slide_delay {Int} ms
+##### auto_slide_delay {Integer} ms
 > Delay between each auto slidein millisecond
 > Default: 5000
 

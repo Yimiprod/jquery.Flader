@@ -1,4 +1,40 @@
 /***********************/
+/* CAROUSEL DECORATION */
+/***********************/
+.flader {
+    position: relative;
+    width: 800px;
+    padding: 0;
+    margin: 0 auto 20px;
+}
+body,
+.flader ul,
+.flader li,
+.flader p,
+.flader .slider_content {
+    margin: 0;
+    padding: 0;
+}
+.flader ul {
+    list-style: none;
+}
+.flader .slider_item {
+    overflow: hidden;
+}
+.flader .c1 {
+    background-color: #f1aaf1;
+}
+.flader .c2 {
+    background-color: #f1f1aa;
+}
+.flader .c3 {
+    background-color: #aaf1f1;
+}
+.flader .slider_nav {
+    background: #afafaf;
+}
+
+/***********************/
 /* CAROUSEL NAVIGATION */
 /***********************/
 .slider_container {
@@ -19,15 +55,18 @@
 }
 .slider_container.slide .slider_item {
     position: absolute;
+    height: 100%;
     width: 100%;
 }
 .slider_container.slide .list_wrap {
     position: relative;
+    width: 100%;
 }
 .slider_container.slide .slider_content {
     position: absolute;
     overflow: hidden;
     height: 100%;
+    min-height: 399px;
     width: 100%;
 }
 .nav_wrap {
@@ -51,4 +90,7 @@
     }
     .nav_wrap .slider_nav.right {
         right: -50px;
+    }
+    .nav_wrap .slider_nav.hide {
+        display: none;
     }
