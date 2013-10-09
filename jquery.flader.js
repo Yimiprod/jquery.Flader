@@ -234,8 +234,8 @@
             }
 
             return items.each(function(i) {
-                $(this).css({ left: 100.0001*(i - current_index) + '%' })
-                       .transition({ left: 100.0001*(i - follow_index) + '%', 'duration': plugin.settings.speed, 'easing': plugin.settings.easing });
+                $(this).css({ left: 100.05*(i - current_index) + '%' })
+                       .transition({ left: 100.05*(i - follow_index) + '%', 'duration': plugin.settings.speed, 'easing': plugin.settings.easing });
             });
         }
         plugin.init();
