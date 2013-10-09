@@ -1,9 +1,10 @@
 /**
 * jQuery Flader
+* https://github.com/Yimiprod/jquery.Flader
 * Dependancies:
 *   Jquery
 *   Jquery.transit : http://ricostacruz.com/jquery.transit/ || https://github.com/rstacruz/jquery.transit
-*       If Jquer.transit forgotten, plugin will use Jquery.animate()
+*       If Jquery.transit forgotten, plugin will use Jquery.animate()
 *
 * Author: Vidril César
 *
@@ -93,7 +94,6 @@
 *
 */
 (function($) {
-    if ( !$.support.transition || undefined === $.fn.transition ) $.fn.transition = $.fn.animate;
     $.Flader = function(element, options) {
 
         var defaults = {
@@ -116,7 +116,7 @@
         var $element = $(element),
             element = element;
 
-        var list_wrap, btn_wrap, hidden_btn, btns_left, btns_right, container, items, current_item, follow_current, auto_slide_timeout;
+        var wrapper, hidden_btn, btns_left, btns_right, container, items, current_item, follow_current, auto_slide_timeout;
 
         var is_sliding = false,
             valid_slide_type = ['slide','fade'],
@@ -128,10 +128,9 @@
             if ( !~$.inArray( plugin.settings.slide_type, valid_slide_type) ) plugin.settings.slide_type = 'slide';
             if ( !plugin.settings.cycling_slide && plugin.settings.slide_type == 'slide') plugin.settings.auto_slide = false;
 
-            container   = $('[data-function="slider_content"]', $element).addClass('slider_content');
+            container   = ( $('[data-function="slider_container"]', $element).length )? $('[data-function="slider_container"]', $element) : $('<div/>', { 'data-function': 'slider_container' });
             items       = $('[data-function="slider_item"]', $element).addClass('slider_item');
-            list_wrap   = $('<div/>', { 'class': 'list_wrap' });
-            btn_wrap    = $('<div/>', { 'class': 'nav_wrap' }).addClass( plugin.settings.wrap_classe );
+            wrapper     = $('<div/>', { 'class': 'slider_wrap' });
             btns_left   = $('<button/>', { 'class': 'slider_nav left' })
                             .addClass( plugin.settings.btns_classe )
                             .on(plugin.settings.mouse_event, function() {
@@ -143,8 +142,10 @@
                                 slide('next');
                             });
 
-            $element.append( list_wrap.append(container) ).addClass( plugin.settings.slide_type + ' slider_container' );
-            if ( items.length > 1 ) $element.append( btn_wrap.append( btns_left, btns_right ) );
+            container.addClass('slider_content');
+            $element.addClass( plugin.settings.slide_type + ' slider_container' );
+            $element.append( wrapper.append( container.append(items) )  );
+            if ( items.length > 1 ) $element.append( wrapper.append( btns_left, btns_right ) );
 
             current_item = items.filter('.active');
             if ( !current_item.length || current_item.length > 1 ){
@@ -161,16 +162,6 @@
                 maxWidth = Math.max( maxWidth, $(this).outerWidth() );
                 maxHeight = Math.max( maxHeight, $(this).outerHeight() );
             });
-            if ( plugin.settings.slide_type == 'slide' ) {
-                var current_index = items.filter('.active').index();
-                items.width(maxWidth).each(function(i) {
-                    $(this).css({ left: 100*(i - current_index) + '%' });
-                });
-
-                container.width( maxWidth );
-                container.height( maxHeight );
-            }
-            $element.height( maxHeight );
 
             if ( plugin.settings.mouse_event === 'mousehold' ){
                 plugin.settings.easing = 'linear';
@@ -243,8 +234,8 @@
             }
 
             return items.each(function(i) {
-                $(this).css({ left: 104*(i - current_index) + '%' })
-                       .transition({ left: 104*(i - follow_index) + '%', 'duration': plugin.settings.speed, 'easing': plugin.settings.easing });
+                $(this).css({ left: 100.0001*(i - current_index) + '%' })
+                       .transition({ left: 100.0001*(i - follow_index) + '%', 'duration': plugin.settings.speed, 'easing': plugin.settings.easing });
             });
         }
         plugin.init();

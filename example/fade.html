@@ -2,7 +2,7 @@
 <html>
     <head>
 		<link rel=stylesheet href='../flader.css'>
-		<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+		<script src='http://code.jquery.com/jquery-latest.min.js'></script>
 		<!-- CSS3 Animation (optional) -->
 		<script src='http://ricostacruz.com/jquery.transit/jquery.transit.min.js'></script>
 		<!-- END CSS3 Animation -->
@@ -10,16 +10,15 @@
 	</head>
 	<body>
 		<div id="fader" class="flader">
-			<ul data-function="slider_content">
-				<li data-function="slider_item" class="c1"><p>content 1</p></li>
-				<li data-function="slider_item" class="c2"><p>content 2</p></li>
-				<li data-function="slider_item" class="c3"><p>content 3</p></li>
-			</ul>
+			<section data-function="slider_item" class="c1"><p>content 1</p></section>
+			<section data-function="slider_item" class="c2"><p>content 2</p></section>
+			<section data-function="slider_item" class="c3"><p>content 3</p></section>
 		</div>
 		<script>
 		$(function(){
 			$('#fader').Flader({
-				slide_type: 'fade'
+				slide_type: 'fade',
+				auto_slide: true
 			});
 		});
 		</script>
