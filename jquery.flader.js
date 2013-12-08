@@ -93,6 +93,15 @@
 *   }
 *
 */
+/**
+* jQuery Flader
+* Dependancies:
+*   Jquery
+*   Jquery.transit : http://ricostacruz.com/jquery.transit/ || https://github.com/rstacruz/jquery.transit
+*       If Jquer.transit forgotten, plugin will use Jquery.animate()
+*
+* Author: Vidril César
+**/
 (function($) {
     $.Flader = function(element, options) {
 
@@ -128,7 +137,7 @@
             if ( !~$.inArray( plugin.settings.slide_type, valid_slide_type) ) plugin.settings.slide_type = 'slide';
             if ( !plugin.settings.cycling_slide && plugin.settings.slide_type == 'slide') plugin.settings.auto_slide = false;
 
-            container   = ( $('[data-function="slider_container"]', $element).length )? $('[data-function="slider_container"]', $element) : $('<div/>', { 'data-function': 'slider_container' });
+            container   = ( $('[data-function="slider_content"]', $element).length )? $('[data-function="slider_content"]', $element) : $('<div/>', { 'data-function': 'slider_content' });
             items       = $('[data-function="slider_item"]', $element).addClass('slider_item');
             wrapper     = $('<div/>', { 'class': 'slider_wrap' });
             btns_left   = $('<button/>', { 'class': 'slider_nav left' })
