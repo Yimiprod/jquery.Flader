@@ -166,10 +166,12 @@
                 if( current_item.index() === items.length-1 ) hidden_btn = btns_right.addClass('hide');
             }
 
-            var maxHeight = maxWidth = 0;
-            $.each( items, function() {
+            var maxHeight = maxWidth = 0,
+                current_index = current_item.index();
+            $.each( items, function(i) {
                 maxWidth = Math.max( maxWidth, $(this).outerWidth() );
                 maxHeight = Math.max( maxHeight, $(this).outerHeight() );
+                if( plugin.settings.slide_type == 'slide') $(this).css({ left: 100.05*(i - current_index) + '%' });
             });
 
             if ( plugin.settings.mouse_event === 'mousehold' ){
