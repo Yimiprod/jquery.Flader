@@ -109,6 +109,7 @@
             btns_classe: '',
             wrap_classe: '',
             slide_type: 'slide',
+            fixe_height: false,
             speed: 500,
             easing: '',
             mouse_event: 'click',
@@ -169,10 +170,12 @@
             var maxHeight = maxWidth = 0,
                 current_index = current_item.index();
             $.each( items, function(i) {
-                maxWidth = Math.max( maxWidth, $(this).outerWidth() );
                 maxHeight = Math.max( maxHeight, $(this).outerHeight() );
-                if( plugin.settings.slide_type == 'slide') $(this).css({ left: 100.05*(i - current_index) + '%' });
+                if( plugin.settings.slide_type == 'slide') {
+                    $(this).css({ left: 100.05*(i - current_index) + '%' });
+                }
             });
+            if (plugin.settings.fixe_height) $element.height( maxHeight );
 
             if ( plugin.settings.mouse_event === 'mousehold' ){
                 plugin.settings.easing = 'linear';
