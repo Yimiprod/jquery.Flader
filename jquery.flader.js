@@ -153,7 +153,6 @@
                             });
 
             container.addClass('slider_content');
-            $element.addClass( plugin.settings.slide_type + ' slider_container' );
             $element.append( wrapper.append( container.append(items) )  );
             if ( items.length > 1 ) $element.append( wrapper.append( btns_left, btns_right ) );
 
@@ -197,6 +196,7 @@
                     'mouseout mouseup': unset_mouse_hold
                 });
             }
+            $element.addClass( plugin.settings.slide_type + ' slider_container' );
 
             if ( plugin.settings.auto_slide ) auto_slide();
         }
