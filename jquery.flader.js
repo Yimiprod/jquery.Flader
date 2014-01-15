@@ -142,63 +142,72 @@
             items       = $('[data-function="slider_item"]', $element).addClass('slider_item');
             wrapper     = $('<div/>', { 'class': 'slider_wrap' });
             btns_left   = $('<button/>', { 'class': 'slider_nav left' })
-                            .addClass( plugin.settings.btns_classe )
-                            .on(plugin.settings.mouse_event, function() {
-                                slide('prev')
-                            });
+                            .addClass( plugin.settings.btns_classe );
             btns_right  = $('<button/>', { 'class': 'slider_nav right' })
-                            .addClass( plugin.settings.btns_classe )
-                            .on(plugin.settings.mouse_event, function() {
-                                slide('next');
-                            });
-
-            container.addClass('slider_content');
-            $element.append( wrapper.append( container.append(items) )  );
-            if ( items.length > 1 ) $element.append( wrapper.append( btns_left, btns_right ) );
+                            .addClass( plugin.settings.btns_classe );
 
             current_item = items.filter('.active');
             if ( !current_item.length || current_item.length > 1 ){
                 current_item = items.removeClass('active').first().addClass('active');
             }
+
+            $element.append( wrapper.append( container.append(items) )  );
+            if ( items.length > 1 ) $element.append( wrapper.append( btns_left, btns_right ) );
+
+            set_height();
+
+            container.addClass('slider_content');
+
+            binds();
+
+            if ( plugin.settings.auto_slide ) auto_slide();
+        }
+        var set_height = function() {
+            if ( $element.is('.slider_container') ) {
+                $element.removeClass('slider_container');
+            }
+            if (plugin.settings.fixe_height) { 
+                var maxHeight = maxWidth = 0,
+                    current_index = current_item.index();
+                $.each( items, function(i) {
+                    maxHeight = Math.max( maxHeight, $(this).outerHeight() );
+                    if( plugin.settings.slide_type == 'slide' ) {
+                        $(this).css({ left: 100.05*(i - current_index) + '%' });
+                    }
+                });
+                $element.height( maxHeight );
+                $(window).on('orientationchange resize', set_height);
+            }
+            $element.addClass( plugin.settings.slide_type + ' slider_container' );
+        }
+        var binds = function() {
+
+            btns_left.on(plugin.settings.mouse_event + '.prev', function() { slide('prev') });
+            btns_right.on(plugin.settings.mouse_event + '.next', function() { slide('next'); });
             if ( !plugin.settings.cycling_slide ){
                 hidden_btn = null;
                 if( current_item.index() === 0 ) hidden_btn = btns_left.addClass('hide');
                 if( current_item.index() === items.length-1 ) hidden_btn = btns_right.addClass('hide');
             }
 
-            var maxHeight = maxWidth = 0,
-                current_index = current_item.index();
-            $.each( items, function(i) {
-                maxHeight = Math.max( maxHeight, $(this).outerHeight() );
-                if( plugin.settings.slide_type == 'slide') {
-                    $(this).css({ left: 100.05*(i - current_index) + '%' });
-                }
-            });
-            if (plugin.settings.fixe_height) $element.height( maxHeight );
-
             if ( plugin.settings.mouse_event === 'mousehold' ){
                 plugin.settings.easing = 'linear';
+                function set_mouse_hold() {
+                    mouse_hold = true;
+                    $(this).trigger('mousehold');
+                }
                 function unset_mouse_hold() {
                     mouse_hold = false;
                 }
                 btns_left.on({
-                    'mousedown': function() {
-                        mouse_hold = true;
-                        $(this).trigger('mousehold');
-                    },
+                    'mousedown': set_mouse_hold,
                     'mouseout mouseup': unset_mouse_hold
                 });
                 btns_right.on({
-                    'mousedown': function() {
-                        mouse_hold = true;
-                        $(this).trigger('mousehold');
-                    },
+                    'mousedown': set_mouse_hold,
                     'mouseout mouseup': unset_mouse_hold
                 });
             }
-            $element.addClass( plugin.settings.slide_type + ' slider_container' );
-
-            if ( plugin.settings.auto_slide ) auto_slide();
         }
         var auto_slide = function() {
             auto_slide_timeout = setTimeout( function() {
