@@ -117,14 +117,13 @@
             auto_slide: false,
             auto_slide_delay: 5000,
             onSlide: function(items_sliding) {}
-        }
+        };
 
         var plugin = this;
 
-        plugin.settings = {}
+        plugin.settings = {};
 
-        var $element = $(element),
-            element = element;
+        var $element = $(element);
 
         var wrapper, hidden_btn, btns_left, btns_right, container, items, current_item, follow_current, auto_slide_timeout;
 
@@ -154,35 +153,42 @@
             $element.append( wrapper.append( container.append(items) )  );
             if ( items.length > 1 ) $element.append( wrapper.append( btns_left, btns_right ) );
 
-            set_height();
+            var current_index = items.filter(current_item).index();
+            if( plugin.settings.slide_type == 'slide' ) {
+                $.each( items, function(i) {
+                    $(this).css({ left: 100.05*(i - current_index) + '%' });
+                });
+            }
 
+            $element.addClass( plugin.settings.slide_type + ' slider_container' );
+
+            if (plugin.settings.fixe_height) {
+                set_height();
+            }
             container.addClass('slider_content');
 
             binds();
 
             if ( plugin.settings.auto_slide ) auto_slide();
-        }
+        };
         var set_height = function() {
-            if ( $element.is('.slider_container') ) {
-                $element.removeClass('slider_container');
-            }
-            if (plugin.settings.fixe_height) { 
-                var maxHeight = maxWidth = 0,
-                    current_index = current_item.index();
+            if (plugin.settings.fixe_height) {
+                var maxHeight = 0,
+                    maxWidth = 0;
+
+                if ( $element.is('.slider_container') ) {
+                    $element.removeClass('slider_container').height( 'auto' );
+                }
                 $.each( items, function(i) {
                     maxHeight = Math.max( maxHeight, $(this).outerHeight() );
-                    if( plugin.settings.slide_type == 'slide' ) {
-                        $(this).css({ left: 100.05*(i - current_index) + '%' });
-                    }
                 });
                 $element.height( maxHeight );
-                $(window).on('orientationchange resize', set_height);
+                $element.addClass( 'slider_container' );
             }
-            $element.addClass( plugin.settings.slide_type + ' slider_container' );
-        }
+        };
         var binds = function() {
 
-            btns_left.on(plugin.settings.mouse_event + '.prev', function() { slide('prev') });
+            btns_left.on(plugin.settings.mouse_event + '.prev', function() { slide('prev'); });
             btns_right.on(plugin.settings.mouse_event + '.next', function() { slide('next'); });
             if ( !plugin.settings.cycling_slide ){
                 hidden_btn = null;
@@ -190,15 +196,8 @@
                 if( current_item.index() === items.length-1 ) hidden_btn = btns_right.addClass('hide');
             }
 
-            if ( plugin.settings.mouse_event === 'mousehold' ){
+            if ( plugin.settings.mouse_event === 'mousehold' ) {
                 plugin.settings.easing = 'linear';
-                function set_mouse_hold() {
-                    mouse_hold = true;
-                    $(this).trigger('mousehold');
-                }
-                function unset_mouse_hold() {
-                    mouse_hold = false;
-                }
                 btns_left.on({
                     'mousedown': set_mouse_hold,
                     'mouseout mouseup': unset_mouse_hold
@@ -208,12 +207,22 @@
                     'mouseout mouseup': unset_mouse_hold
                 });
             }
-        }
+            if (plugin.settings.fixe_height) {
+                $(window).on('orientationchange resize', set_height);
+            }
+        };
+        var set_mouse_hold = function() {
+            mouse_hold = true;
+            $(this).trigger('mousehold');
+        };
+        var unset_mouse_hold = function() {
+           mouse_hold = false;
+        };
         var auto_slide = function() {
             auto_slide_timeout = setTimeout( function() {
                 slide();
             }, plugin.settings.auto_slide_delay);
-        }
+        };
         var slide = function(dir) {
             if ( !is_sliding ) {
                 if ( dir === undefined ) dir = 'next';
@@ -232,7 +241,7 @@
                     if ( plugin.settings.auto_slide && !mouse_hold ) auto_slide();
                 });
             }
-        }
+        };
         var fading = function() {
             return follow_current.addClass('active')
                                  .css({ opacity:0, 'z-index': 20 })
@@ -240,7 +249,7 @@
                                     current_item.css({opacity: '0'});
                                     follow_current.css({'z-index': ''});
                                  });
-        }
+        };
         var sliding = function(dir) {
             follow_current.addClass('active');
             follow_current[ dir === 'next' ? 'before' : 'after' ](current_item);
@@ -260,16 +269,16 @@
                 $(this).css({ left: 100.05*(i - current_index) + '%' })
                        .transition({ left: 100.05*(i - follow_index) + '%', 'duration': plugin.settings.speed, 'easing': plugin.settings.easing });
             });
-        }
+        };
         plugin.init();
-    }
+    };
 
     $.fn.Flader = function(options) {
         return this.each(function() {
-            if (undefined == $(this).data('Flader')) {
+            if ($(this).data('Flader') === undefined) {
                 var plugin = new $.Flader(this, options);
                 $(this).data('Flader', plugin);
             }
         });
-    }
+    };
 })(jQuery);
