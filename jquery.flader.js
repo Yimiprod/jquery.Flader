@@ -162,12 +162,10 @@
 
             $element.addClass( plugin.settings.slide_type + ' slider_container' );
 
-            if (plugin.settings.fixe_height) {
-                set_height();
-            }
-            container.addClass('slider_content');
-
+            set_height();
             binds();
+
+            container.addClass('slider_content');
 
             if ( plugin.settings.auto_slide ) auto_slide();
         };
@@ -176,9 +174,8 @@
                 var maxHeight = 0,
                     maxWidth = 0;
 
-                if ( $element.is('.slider_container') ) {
-                    $element.removeClass('slider_container').height( 'auto' );
-                }
+                $element.removeClass('slider_container').height( 'auto' );
+
                 $.each( items, function(i) {
                     maxHeight = Math.max( maxHeight, $(this).outerHeight() );
                 });
@@ -207,9 +204,7 @@
                     'mouseout mouseup': unset_mouse_hold
                 });
             }
-            if (plugin.settings.fixe_height) {
-                $(window).on('orientationchange resize', set_height);
-            }
+            $(window).on('orientationchange resize', set_height);
         };
         var set_mouse_hold = function() {
             mouse_hold = true;
