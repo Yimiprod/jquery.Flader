@@ -1,7 +1,7 @@
 /**
 * jQuery Flader
 * https://github.com/Yimiprod/jquery.Flader
-* Dependancies:
+* Dependencies:
 *   Jquery
 *   Jquery.transit : http://ricostacruz.com/jquery.transit/ || https://github.com/rstacruz/jquery.transit
 *       If Jquery.transit forgotten, plugin will use Jquery.animate()
